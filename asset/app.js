@@ -35,3 +35,7 @@ function startGame() {
 }
 
 startGame();
+
+document.onkeypress = function() {
+    
+}
