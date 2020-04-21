@@ -46,7 +46,6 @@ document.onkeypress = function (event) {
     document.querySelector("#numberOfGuess").innerHTML = numberOfGuess;
     document.querySelector("#yourGuess").innerHTML = yourGuess;
 
-
     for (var i = 0; i < wordToLetters.length; i++) {
 
         if (letter === wordToLetters[i]) {
@@ -61,7 +60,7 @@ document.onkeypress = function (event) {
         numWin++;
         document.querySelector("#win").innerHTML = numWin;
         
-        setTimeout(function() {
+         setTimeout(function() {
             var confirmResult = confirm("You Win! Play Again?");
             if(confirmResult) {
                 startGame();
