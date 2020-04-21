@@ -41,7 +41,6 @@ startGame();
 
 document.onkeypress = function (event) {
     var letter = event.key.toUpperCase();
-    var isLetterPrinted = false;
     numberOfGuess--;
     yourGuess.push(letter);
     document.querySelector("#numberOfGuess").innerHTML = numberOfGuess;
@@ -51,25 +50,24 @@ document.onkeypress = function (event) {
     for (var i = 0; i < wordToLetters.length; i++) {
 
         if (letter === wordToLetters[i]) {
-            isLetterPrinted = true;
-
-            if (isLetterPrinted) {
-                wordDisplay[i] = letter;
-                console.log("this is wordDisplay while we are playing: " + wordDisplay);
-                console.log("this is wordToLetters while we are playing: " + wordToLetters);
-                document.querySelector("#wordToGuess").innerHTML = wordDisplay.join(" ");
-            }
+            wordDisplay[i] = letter;
+            // console.log("this is wordDisplay while we are playing: " + wordDisplay);
+            // console.log("this is wordToLetters while we are playing: " + wordToLetters);
+            document.querySelector("#wordToGuess").innerHTML = wordDisplay.join(" ");
         }
     }
 
     if(wordDisplay.join("") === wordToLetters.join("")) {
-        console.log(true);
         numWin++;
         document.querySelector("#win").innerHTML = numWin;
-        startGame();
-    }
-
-    
+        
+        setTimeout(function() {
+            var confirmResult = confirm("You Win! Play Again?");
+            if(confirmResult) {
+                startGame();
+            };
+        }, 100);
+    }  
 
     if (numberOfGuess === 0) {
         numLose++;
