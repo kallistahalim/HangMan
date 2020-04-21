@@ -22,7 +22,7 @@ function startGame() {
     yourGuess = [];
 
     //create _ _ _ _ based on how many letters in the word
-    for(var i = 0; i < wordToLetters.length; i ++) {
+    for (var i = 0; i < wordToLetters.length; i++) {
         wordDisplay.push("_");
     }
 
@@ -31,7 +31,8 @@ function startGame() {
     document.querySelector("#lose").innerHTML = numLose;
     document.querySelector("#wordToGuess").innerHTML = wordDisplay.join(" ");
     document.querySelector("#yourGuess").innerHTML = yourGuess;
-    
+    document.querySelector("#numberOfGuess").innerHTML = numberOfGuess;
+
     //tests
     console.log(computerChoice);
     console.log(wordToLetters);
@@ -40,28 +41,39 @@ function startGame() {
 
 startGame();
 
-document.onkeypress = function(event) {
+document.onkeypress = function (event) {
     var letter = event.key.toUpperCase();
     var isLetterPrinted = false;
+    numberOfGuess = 9;
 
-    for(var i = 0; i < wordToLetters.length; i++) {
+    for (var i = 0; i < wordToLetters.length; i++) {
         
-        if(letter === wordToLetters[i]) {
+        if (letter === wordToLetters[i]) {
             isLetterPrinted = true;
 
-            //test
-            console.log(isLetterPrinted);
-            if(isLetterPrinted === true) {
+            if (isLetterPrinted) {
                 wordDisplay[i] = letter;
                 document.querySelector("#wordToGuess").innerHTML = wordDisplay.join(" ");
-            }
+            
+            } 
+        } else {
+            if (numberOfGuess < 1) {
+                numLose ++;
+                document.querySelector("#lose").innerHTML = numLose;
+                startGame();
+            } else {
+                yourGuess.push(letter);
+                
+                
             }
         }
         
-    
-    
+    }
+
+
+
     //tests
     console.log(letter);
-    
+
 
 }
