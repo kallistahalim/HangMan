@@ -1,6 +1,6 @@
 //GLOBAL VARIABLES
-var numWin;
-var numLose;
+var numWin = 0;
+var numLose = 0;
 var wordToGuess = ["Coco", "Puma", "Treats", "Bandana", "Cuddles", "Pets"];
 var numberOfGuess = 9;
 var yourGuess = [];
@@ -30,7 +30,6 @@ function startGame() {
     document.querySelector("#win").innerHTML = numWin;
     document.querySelector("#lose").innerHTML = numLose;
     document.querySelector("#wordToGuess").innerHTML = wordDisplay.join(" ");
-    document.querySelector("#yourGuess").innerHTML = yourGuess;
     document.querySelector("#numberOfGuess").innerHTML = numberOfGuess;
 
     //tests
@@ -44,7 +43,11 @@ startGame();
 document.onkeypress = function (event) {
     var letter = event.key.toUpperCase();
     var isLetterPrinted = false;
-    numberOfGuess = 9;
+    numberOfGuess--;
+    yourGuess.push(letter);
+    document.querySelector("#numberOfGuess").innerHTML = numberOfGuess;
+    document.querySelector("#yourGuess").innerHTML = yourGuess;
+
 
     for (var i = 0; i < wordToLetters.length; i++) {
         
@@ -57,12 +60,13 @@ document.onkeypress = function (event) {
             
             } 
         } else {
-            if (numberOfGuess < 1) {
-                numLose ++;
+            if (numberOfGuess === 0) {
+                numLose++;
                 document.querySelector("#lose").innerHTML = numLose;
+                console.log(numLose + " +1");
                 startGame();
             } else {
-                yourGuess.push(letter);
+                
                 
                 
             }
