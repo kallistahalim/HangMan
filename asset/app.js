@@ -17,8 +17,6 @@ function startGame() {
     wordToLetters = computerChoice.split("");
     wordDisplay = [];
     numberOfGuess = 9;
-    numWin = 0;
-    numLose = 0;
     yourGuess = [];
 
     //create _ _ _ _ based on how many letters in the word
@@ -31,11 +29,12 @@ function startGame() {
     document.querySelector("#lose").innerHTML = numLose;
     document.querySelector("#wordToGuess").innerHTML = wordDisplay.join(" ");
     document.querySelector("#numberOfGuess").innerHTML = numberOfGuess;
+    document.querySelector("#yourGuess").innerHTML = yourGuess;
 
     //tests
-    console.log(computerChoice);
-    console.log(wordToLetters);
-    console.log(wordDisplay);
+    console.log("this is computerChoice: " + computerChoice);
+    // console.log("this is wordToLetters: " + wordToLetters);
+    // console.log("this is wordDisplay: " + wordDisplay);
 }
 
 startGame();
@@ -50,34 +49,32 @@ document.onkeypress = function (event) {
 
 
     for (var i = 0; i < wordToLetters.length; i++) {
-        
+
         if (letter === wordToLetters[i]) {
             isLetterPrinted = true;
 
             if (isLetterPrinted) {
                 wordDisplay[i] = letter;
+                console.log("this is wordDisplay while we are playing: " + wordDisplay);
+                console.log("this is wordToLetters while we are playing: " + wordToLetters);
                 document.querySelector("#wordToGuess").innerHTML = wordDisplay.join(" ");
-            
-            } 
-        } else {
-            if (numberOfGuess === 0) {
-                numLose++;
-                document.querySelector("#lose").innerHTML = numLose;
-                console.log(numLose + " +1");
-                startGame();
-            } else {
-                
-                
-                
             }
         }
-        
     }
 
+    if(wordDisplay.join("") === wordToLetters.join("")) {
+        console.log(true);
+        numWin++;
+        document.querySelector("#win").innerHTML = numWin;
+        startGame();
+    }
 
+    
 
-    //tests
-    console.log(letter);
-
+    if (numberOfGuess === 0) {
+        numLose++;
+        document.querySelector("#lose").innerHTML = numLose;
+        startGame();
+    }
 
 }
