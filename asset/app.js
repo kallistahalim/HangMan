@@ -1,7 +1,7 @@
 //GLOBAL VARIABLES
 var numWin = 0;
 var numLose = 0;
-var wordToGuess = ["Coco", "Puma", "Treats", "Bandana", "Cuddles", "Pets"];
+var wordToGuess = ["Coco", "Puma", "Treats", "Bandana", "Cuddles", "Pets", "Mommy", "Dog", "Ball", "Cookies", "Ice Cream"];
 var numberOfGuess = 9;
 var yourGuess = [];
 var wordDisplay = [];
