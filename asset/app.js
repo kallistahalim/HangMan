@@ -41,10 +41,19 @@ startGame();
 
 document.onkeypress = function (event) {
     var letter = event.key.toUpperCase();
-    numberOfGuess--;
+
+    for (var j = 0; j < yourGuess.length; j++) {
+        if (yourGuess[j] === letter) {
+            return false;
+        }
+    }
+
     yourGuess.push(letter);
-    document.querySelector("#numberOfGuess").innerHTML = numberOfGuess;
     document.querySelector("#yourGuess").innerHTML = yourGuess;
+
+    numberOfGuess--;
+    document.querySelector("#numberOfGuess").innerHTML = numberOfGuess;
+
 
     for (var i = 0; i < wordToLetters.length; i++) {
 
@@ -56,17 +65,17 @@ document.onkeypress = function (event) {
         }
     }
 
-    if(wordDisplay.join("") === wordToLetters.join("")) {
+    if (wordDisplay.join("") === wordToLetters.join("")) {
         numWin++;
         document.querySelector("#win").innerHTML = numWin;
-        
-         setTimeout(function() {
+
+        setTimeout(function () {
             var confirmResult = confirm("You Win! Play Again?");
-            if(confirmResult) {
+            if (confirmResult) {
                 startGame();
             };
         }, 100);
-    }  
+    }
 
     if (numberOfGuess === 0) {
         numLose++;
